@@ -17,8 +17,6 @@ export class FanComponent extends Component {
     public rotate(speed: number) {
         this.particle.active = !(speed == 0)
 
-        console.warn("FFF")
-
         this.startRotation.x += 9 * speed
         this.node.setRotationFromEuler(this.startRotation)
     }

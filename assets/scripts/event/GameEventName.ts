@@ -1,4 +1,7 @@
 // Имена игровых событий
 export enum GameEventName {
-  CRASH
+  CRASH,
+  COIN_COLLECT,
+
+  GAME_OVER
 }

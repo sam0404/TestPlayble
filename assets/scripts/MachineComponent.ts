@@ -1,4 +1,4 @@
-import { _decorator, CCFloat, Component, RigidBody, Vec3 } from 'cc';
+import { _decorator, CCFloat, Collider, Component, RigidBody, Vec3 } from 'cc';
 import { GameEvent } from './event/GameEvent';
 import { FanComponent } from './FanComponent';
 import { HandleComponent } from './HandleComponent';
@@ -12,7 +12,10 @@ export class MachineComponent extends Component {
 
 
     @property(CCFloat)
-    private speed: number = 5
+    private speed: number = 25
+
+    @property(Collider)
+    readonly bodyCollider: Collider
 
     private wheels: WheelComponent[] = []
     private partsRB: RigidBody[] = []
@@ -29,6 +32,8 @@ export class MachineComponent extends Component {
         this.wheels = this.node.getComponentsInChildren(WheelComponent)
 
         GameEvent.on("CRASH", this.onCrash, this)
+
+        this.bodyCollider.on("onTriggerEnter", this.onCoinCollect, this)
     }
 
     protected update(deltaTime: number) {
@@ -52,6 +57,8 @@ export class MachineComponent extends Component {
             part.linearFactor = new Vec3(Math.random() * mulltiplicator,
                 Math.random() * mulltiplicator, Math.random() * mulltiplicator)
         })
+
+        this.handleCpmponent.node.active = false
     }
 
     private onDisableRB() {
@@ -60,6 +67,14 @@ export class MachineComponent extends Component {
 
             part.enabled = false
         })
+    }
+
+    private onCoinCollect(event) {
+        if (event.otherCollider.node.name.includes("Coin")) {
+            event.otherCollider.node.active = false
+
+            GameEvent.emit("COIN_COLLECT")
+        }
     }
 }
 
