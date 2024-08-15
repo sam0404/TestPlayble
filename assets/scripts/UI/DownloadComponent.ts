@@ -1,8 +1,8 @@
 import { _decorator, CCFloat, Component, sys, tween, UIOpacity } from 'cc';
 import { GameEvent } from '../event/GameEvent';
+import { URL } from '../url/URL';
 const { ccclass, property, requireComponent } = _decorator;
 
-const DOWNLOAD_URL = 'https://play.google.com/store/apps/details?id=com.everywear.game5&hl=ru'
 
 @ccclass('DownloadComponent')
 @requireComponent(UIOpacity)
@@ -14,7 +14,6 @@ export class DownloadComponent extends Component {
     readonly hideSpeed: number = 0.5
 
     private opacity: UIOpacity
-    private _url: string = encodeURI(DOWNLOAD_URL)
 
     protected start() {
         this.opacity = this.node.getComponent(UIOpacity)
@@ -28,11 +27,8 @@ export class DownloadComponent extends Component {
         }, this.delay)
     }
 
-
     // EDITOR
     private onDownload() {
-        sys.openURL(this._url)
+        sys.openURL(URL.url)
     }
 }
-
-

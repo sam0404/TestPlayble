@@ -18,7 +18,6 @@ export class TrapBlockComponent extends Component {
     }
 
     private collisionStart(event) {
-        console.warn(event)
         if (event.otherCollider.node.name == "wheel_front") {
             this.rb.type = ERigidBodyType.DYNAMIC
 
