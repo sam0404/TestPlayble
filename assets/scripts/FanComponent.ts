@@ -21,5 +21,3 @@ export class FanComponent extends Component {
         this.node.setRotationFromEuler(this.startRotation)
     }
 }
-
-

@@ -26,5 +26,3 @@ export class ScoreComponent extends Component {
         this.coinText.string = this.coinQuantity.toString()
     }
 }
-
-

@@ -33,5 +33,3 @@ export class CameraComponent extends Component {
         this.isCrash = true
     }
 }
-
-

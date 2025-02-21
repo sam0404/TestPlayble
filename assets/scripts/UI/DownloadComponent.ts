@@ -16,6 +16,7 @@ export class DownloadComponent extends Component {
     private opacity: UIOpacity
 
     protected start() {
+        URL.init()
         this.opacity = this.node.getComponent(UIOpacity)
 
         GameEvent.on("CRASH", this.hide, this)

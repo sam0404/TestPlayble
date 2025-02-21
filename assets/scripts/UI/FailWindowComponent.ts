@@ -36,12 +36,13 @@ export class FailWindowComponent extends Component {
 
         this.node.active = false
 
-        GameEvent.on('CRASH', this.showCross, this)
-        GameEvent.on('CRASH', this.showTryButton, this)
+        GameEvent.on('CRASH', () => {
+            this.showCross()
+            this.showTryButton()
+        }, this)
     }
 
     private showCross() {
-
         let opacityTween = tween(this.cross).to(1 / this.speedCrossOpacity, { opacity: 255 })
 
         let quat: Quat = new Quat;

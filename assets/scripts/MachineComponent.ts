@@ -1,8 +1,9 @@
-import { _decorator, CCFloat, Collider, Component, RigidBody, Vec3 } from 'cc';
+import { _decorator, CCFloat, Collider, Component, RigidBody } from 'cc';
 import { GameEvent } from './event/GameEvent';
 import { FanComponent } from './FanComponent';
-import { HandleComponent } from './HandleComponent';
+import { HandleComponent } from './UI/HandleComponent';
 import { WheelComponent } from './WheelComponent';
+
 const { ccclass, property } = _decorator;
 
 @ccclass('MachineComponent')
@@ -54,8 +55,6 @@ export class MachineComponent extends Component {
         this.partsRB.forEach(part => {
             part.enabled = true
             part.useGravity = true
-            part.linearFactor = new Vec3(Math.random() * mulltiplicator,
-                Math.random() * mulltiplicator, Math.random() * mulltiplicator)
         })
 
         this.handleCpmponent.node.active = false
@@ -77,5 +76,3 @@ export class MachineComponent extends Component {
         }
     }
 }
-
-

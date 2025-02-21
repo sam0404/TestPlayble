@@ -22,7 +22,7 @@
         "mipfilter": "linear",
         "anisotropy": 0,
         "isRGBE": false,
-        "imageDatabaseUri": "db://assets/static_resource/sprites/BackGround_2.png"
+        "imageDatabaseUri": "f8b65399-e0bd-489b-853b-f82fe0e6772f"
       },
       "ver": "1.0.10",
       "imported": true,

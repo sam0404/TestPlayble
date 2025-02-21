@@ -18,5 +18,3 @@ export class CoinComponent extends Component {
         this.node.setRotationFromEuler(this.startRotation)
     }
 }
-
-

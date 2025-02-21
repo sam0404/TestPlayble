@@ -1,5 +1,5 @@
 import { _decorator, Component, Vec3 } from 'cc';
-const { ccclass, property } = _decorator;
+const { ccclass } = _decorator;
 
 @ccclass('WheelComponent')
 export class WheelComponent extends Component {
