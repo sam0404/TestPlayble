@@ -10,7 +10,11 @@ export abstract class URL {
 
     public static init() {
         if (sys.Platform.IOS) {
-            this._url = APP_STORE_URL
+            this._url = encodeURI(APP_STORE_URL)
+        } else if (sys.Platform.ANDROID) {
+            this._url = encodeURI(DOWNLOAD_URL)
+        } else {
+            this._url = encodeURI(DOWNLOAD_URL)
         }
     }
 

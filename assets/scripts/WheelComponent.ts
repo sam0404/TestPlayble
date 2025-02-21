@@ -15,5 +15,3 @@ export class WheelComponent extends Component {
         this.node.setRotationFromEuler(this.startRotation)
     }
 }
-
-

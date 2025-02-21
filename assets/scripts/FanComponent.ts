@@ -8,7 +8,6 @@ export class FanComponent extends Component {
 
     private startRotation = new Vec3();
 
-
     protected start() {
         this.startRotation = new Vec3();
         this.node.rotation.getEulerAngles(this.startRotation);

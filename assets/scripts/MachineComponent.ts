@@ -11,7 +11,6 @@ export class MachineComponent extends Component {
     @property(HandleComponent)
     readonly handleCpmponent: HandleComponent
 
-
     @property(CCFloat)
     private speed: number = 25
 
@@ -51,7 +50,6 @@ export class MachineComponent extends Component {
     }
 
     private onCrash() {
-        const mulltiplicator = 4
         this.partsRB.forEach(part => {
             part.enabled = true
             part.useGravity = true

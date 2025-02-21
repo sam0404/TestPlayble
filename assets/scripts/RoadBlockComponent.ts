@@ -21,8 +21,6 @@ export class RoadBlockComponent extends Component {
         this.collider = this.node.getComponent(Collider)
         this.rb = this.node.getComponent(RigidBody)
 
-
-
         if (this.collider) {
             switch (this.block) {
                 case BlockType.USUALY:
@@ -35,7 +33,6 @@ export class RoadBlockComponent extends Component {
             }
 
         }
-
     }
 
     private collisionEnd(event) {

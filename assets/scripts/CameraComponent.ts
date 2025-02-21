@@ -17,7 +17,7 @@ export class CameraComponent extends Component {
         GameEvent.on("CRASH", this.onCrash, this)
     }
 
-    update(deltaTime: number) {
+    lateUpdate(deltaTime: number) {
         if (this.isCrash) return
 
         const { x, y, z } = this.node.worldPosition
