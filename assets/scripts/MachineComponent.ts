@@ -1,4 +1,4 @@
-import { _decorator, CCFloat, Collider, Component, RigidBody } from 'cc';
+import { _decorator, CCFloat, Collider, Component, ERigidBodyType, RigidBody } from 'cc';
 import { GameEvent } from './event/GameEvent';
 import { FanComponent } from './FanComponent';
 import { HandleComponent } from './UI/HandleComponent';
@@ -20,6 +20,8 @@ export class MachineComponent extends Component {
     private wheels: WheelComponent[] = []
     private partsRB: RigidBody[] = []
     private fan: FanComponent;
+
+    private isCrash: boolean = false
 
 
     protected start(): void {
@@ -50,10 +52,21 @@ export class MachineComponent extends Component {
     }
 
     private onCrash() {
+        this.isCrash = true
+        this.speed = 2
+
         this.partsRB.forEach(part => {
+            part.type = ERigidBodyType.DYNAMIC
             part.enabled = true
             part.useGravity = true
+            let collider = part.node.getComponent(Collider)
+            if (collider) {
+                collider.isTrigger = false
+            }
+
         })
+
+        this.wheels.forEach(wheel => wheel.onGravitation())
 
         this.handleCpmponent.node.active = false
     }
@@ -61,8 +74,8 @@ export class MachineComponent extends Component {
     private onDisableRB() {
         this.partsRB.forEach(part => {
             if (part.name.includes("wheel")) return
-
-            part.enabled = false
+            part.useGravity = false
+            part.enabled = true
         })
     }
 

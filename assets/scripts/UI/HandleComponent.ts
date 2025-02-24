@@ -69,7 +69,7 @@ export class HandleComponent extends Component {
         nodePos.x = x
         nodePos.y = math.clamp(nodePos.y, this.minY, this.maxY)
 
-        this._handleSpeed = (nodePos.y - this.minY) / this._diapazon + 0.5
+        this._handleSpeed = (nodePos.y - this.minY) / this._diapazon + 1
 
         let worldPosition = this.hadleTransform.convertToWorldSpaceAR(nodePos);
 

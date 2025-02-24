@@ -8,8 +8,7 @@
       "__id__": 1
     },
     "optimizationPolicy": 0,
-    "persistent": false,
-    "asyncLoadAssets": false
+    "persistent": false
   },
   {
     "__type__": "cc.Node",
@@ -56,6 +55,7 @@
       "y": 3,
       "z": 3
     },
+    "_mobility": 0,
     "_layer": 1073741824,
     "_euler": {
       "__type__": "cc.Vec3",
@@ -101,6 +101,7 @@
       "y": 100,
       "z": 100
     },
+    "_mobility": 0,
     "_layer": 1073741824,
     "_euler": {
       "__type__": "cc.Vec3",
@@ -128,7 +129,9 @@
       }
     ],
     "_visFlags": 0,
-    "lightmapSettings": null,
+    "bakeSettings": {
+      "__id__": 5
+    },
     "_mesh": {
       "__uuid__": "8e150b80-7819-498c-814a-5b72d864b19d@a4587",
       "__expectedType__": "cc.Mesh"
@@ -137,11 +140,9 @@
     "_shadowReceivingMode": 1,
     "_shadowBias": 0,
     "_shadowNormalBias": 0,
+    "_reflectionProbeId": -1,
     "_enableMorph": true,
-    "_id": "",
-    "bakeSettings": {
-      "__id__": 5
-    }
+    "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
@@ -161,7 +162,12 @@
     "_castShadow": false,
     "_receiveShadow": false,
     "_recieveShadow": false,
-    "_lightmapSize": 64
+    "_lightmapSize": 64,
+    "_useLightProbe": false,
+    "_bakeToLightProbe": true,
+    "_reflectionProbeType": 0,
+    "_bakeToReflectionProbe": true,
+    "_probeCubemap": null
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -171,7 +177,10 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "e61Uy3TyZPNJ2LZmcwGPX0"
+    "fileId": "e61Uy3TyZPNJ2LZmcwGPX0",
+    "instance": null,
+    "targetOverrides": null,
+    "nestedPrefabInstanceRoots": null
   },
   {
     "__type__": "23ce1XMzoJJUbKs/RT8vKUD",
@@ -266,6 +275,8 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "8fS61IWEVIiJ6GvZ2h+jxF"
+    "fileId": "8fS61IWEVIiJ6GvZ2h+jxF",
+    "instance": null,
+    "targetOverrides": null
   }
 ]

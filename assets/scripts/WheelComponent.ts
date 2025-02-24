@@ -1,11 +1,14 @@
-import { _decorator, Component, Vec3 } from 'cc';
-const { ccclass } = _decorator;
+import { _decorator, Component, RigidBody, Vec3 } from 'cc';
+const { ccclass, requireComponent } = _decorator;
 
 @ccclass('WheelComponent')
+@requireComponent(RigidBody)
 export class WheelComponent extends Component {
     private startRotation = new Vec3();
+    private rb: RigidBody
 
     protected start() {
+        this.rb = this.node.getComponent(RigidBody)
         this.startRotation = new Vec3();
         this.node.rotation.getEulerAngles(this.startRotation);
     }
@@ -13,5 +16,10 @@ export class WheelComponent extends Component {
     public rotateWheel(speed: number) {
         this.startRotation.y += 5 * speed
         this.node.setRotationFromEuler(this.startRotation)
+    }
+
+    public onGravitation() {
+        this.rb.useGravity = true
+        this.rb.setLinearVelocity(new Vec3((Math.random() * 12475) % 4 + 4, -Math.random() * 12475 % 16 - 10, 0))
     }
 }
