@@ -1,6 +1,7 @@
-import { _decorator, CCFloat, Collider, Component, ERigidBodyType, RigidBody } from 'cc';
+import { _decorator, CCFloat, Collider, Component } from 'cc';
 import { GameEvent } from './event/GameEvent';
 import { FanComponent } from './FanComponent';
+import { MachineRBElemenComponent } from './MachineRBElemenComponent';
 import { HandleComponent } from './UI/HandleComponent';
 import { WheelComponent } from './WheelComponent';
 
@@ -18,18 +19,14 @@ export class MachineComponent extends Component {
     readonly bodyCollider: Collider
 
     private wheels: WheelComponent[] = []
-    private partsRB: RigidBody[] = []
+    private partsRB: MachineRBElemenComponent[] = []
     private fan: FanComponent;
-
-    private isCrash: boolean = false
-
+    //private rb: RigidBody = null
 
     protected start(): void {
-        this.partsRB = this.node.getComponentsInChildren(RigidBody)
-        this.partsRB.push(this.node.getComponent(RigidBody))
+        this.partsRB = this.node.getComponentsInChildren(MachineRBElemenComponent)
+        //this.rb = this.node.getComponent(RigidBody)
         this.fan = this.node.getComponentInChildren(FanComponent)
-
-        this.onDisableRB()
 
         this.wheels = this.node.getComponentsInChildren(WheelComponent)
 
@@ -52,13 +49,12 @@ export class MachineComponent extends Component {
     }
 
     private onCrash() {
-        this.isCrash = true
-        this.speed = 2
+        this.speed = 1
+
+        //this.rb.enabled = true
 
         this.partsRB.forEach(part => {
-            part.type = ERigidBodyType.DYNAMIC
-            part.enabled = true
-            part.useGravity = true
+            part.onGravitaion()
             let collider = part.node.getComponent(Collider)
             if (collider) {
                 collider.isTrigger = false
@@ -69,14 +65,6 @@ export class MachineComponent extends Component {
         this.wheels.forEach(wheel => wheel.onGravitation())
 
         this.handleCpmponent.node.active = false
-    }
-
-    private onDisableRB() {
-        this.partsRB.forEach(part => {
-            if (part.name.includes("wheel")) return
-            part.useGravity = false
-            part.enabled = true
-        })
     }
 
     private onCoinCollect(event) {

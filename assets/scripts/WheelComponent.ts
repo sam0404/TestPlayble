@@ -19,7 +19,7 @@ export class WheelComponent extends Component {
     }
 
     public onGravitation() {
+        this.rb.setLinearVelocity(new Vec3(8, 1, 1))
         this.rb.useGravity = true
-        this.rb.setLinearVelocity(new Vec3((Math.random() * 12475) % 4 + 4, -Math.random() * 12475 % 16 - 10, 0))
     }
 }
