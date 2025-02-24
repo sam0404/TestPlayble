@@ -21,11 +21,11 @@ export class MachineComponent extends Component {
     private wheels: WheelComponent[] = []
     private partsRB: MachineRBElemenComponent[] = []
     private fan: FanComponent;
-    //private rb: RigidBody = null
+
+    private isCrash: boolean = false
 
     protected start(): void {
         this.partsRB = this.node.getComponentsInChildren(MachineRBElemenComponent)
-        //this.rb = this.node.getComponent(RigidBody)
         this.fan = this.node.getComponentInChildren(FanComponent)
 
         this.wheels = this.node.getComponentsInChildren(WheelComponent)
@@ -36,6 +36,8 @@ export class MachineComponent extends Component {
     }
 
     protected update(deltaTime: number) {
+        if (this.isCrash) return
+
         let newPos = this.node.position.clone()
         newPos.x += this.speed * this.handleCpmponent.handleSpeed * deltaTime
 
@@ -49,9 +51,7 @@ export class MachineComponent extends Component {
     }
 
     private onCrash() {
-        this.speed = 1
-
-        //this.rb.enabled = true
+        this.isCrash = true
 
         this.partsRB.forEach(part => {
             part.onGravitaion()
@@ -59,7 +59,6 @@ export class MachineComponent extends Component {
             if (collider) {
                 collider.isTrigger = false
             }
-
         })
 
         this.wheels.forEach(wheel => wheel.onGravitation())
