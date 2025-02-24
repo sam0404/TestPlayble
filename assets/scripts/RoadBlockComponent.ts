@@ -7,6 +7,7 @@ enum BlockType {
     TRAP = 2
 }
 const GRAVITY = -10
+const GRAVITY_TRAP = -45
 @ccclass('RoadBlockComponent')
 @requireComponent(Collider)
 @requireComponent(RigidBody)
@@ -48,13 +49,13 @@ export class RoadBlockComponent extends Component {
     private collisionStart(event) {
         if (event.otherCollider.node.name == "wheel_back") {
             this.rb.type = ERigidBodyType.DYNAMIC
-            this.rb.setLinearVelocity(new Vec3(0, GRAVITY, 0))
+            this.rb.setLinearVelocity(new Vec3(0, GRAVITY_TRAP, 0))
             GameEvent.emit('CRASH')
 
             if (this.failRoadBlocks.length > 0) {
                 this.failRoadBlocks.forEach(block => {
                     block.type = ERigidBodyType.DYNAMIC
-                    this.rb.setLinearVelocity(new Vec3(0, GRAVITY, 0))
+                    this.rb.setLinearVelocity(new Vec3(0, GRAVITY_TRAP, 0))
                 })
             }
         }

@@ -53,15 +53,19 @@ export class MachineComponent extends Component {
     private onCrash() {
         this.isCrash = true
 
-        this.partsRB.forEach(part => {
-            part.onGravitaion()
-            let collider = part.node.getComponent(Collider)
-            if (collider) {
-                collider.isTrigger = false
-            }
+        this.scheduleOnce(() => {
+            this.partsRB.forEach(part => {
+                part.onGravitaion()
+                let collider = part.node.getComponent(Collider)
+                if (collider) {
+                    collider.isTrigger = false
+                }
+            }, 1)
+
+            this.wheels.forEach(wheel => wheel.onGravitation())
         })
 
-        this.wheels.forEach(wheel => wheel.onGravitation())
+
 
         this.handleCpmponent.node.active = false
     }
